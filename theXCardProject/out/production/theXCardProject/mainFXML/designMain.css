@@ -1,0 +1,23 @@
+.root {
+	-fx-font-family: Trebuchet MS;
+    -fx-font-size: 20px;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+}
+
+.button { -fx-text-fill: #F5F5F5; }
+
+#leftPane, #leftPane .button { -fx-background-color: #303030; }
+#leftPane .button:hover { -fx-background-color: dimgray }
+
+#rightPane .button { -fx-background-color: #303030; }
+#rightPane .button:hover { -fx-background-color: chocolate; }
+#rightPane .button:pressed { -fx-background-color: darkorange; }
+
+#rightPane { -fx-background-color: #F5F5F5; }
+
+#topBar { -fx-background-color: darkorange; }
+#topBar #labelBackToHome:hover { -fx-font-weight: bold; }

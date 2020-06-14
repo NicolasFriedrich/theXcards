@@ -1,0 +1,21 @@
+.root {
+	-fx-font-family: Trebuchet MS;
+    -fx-font-size: 20px;
+}
+
+.root .label {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+}
+
+.root .button {
+    -fx-text-fill: #F5F5F5;
+}
+
+.root #rightPane {
+    -fx-background-color: #F5F5F5;
+}
+
+.root #topBar {
+    -fx-background-color: orange;
+}

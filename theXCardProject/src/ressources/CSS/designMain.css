@@ -1,0 +1,23 @@
+#rightPane .button {
+    -fx-background-color: #303030;
+}
+
+#topBar #labelBackToHome:hover {
+    -fx-font-weight: bold;
+}
+
+.default-color0.chart-pie {
+    -fx-pie-color: orange;
+}
+
+.default-color1.chart-pie {
+    -fx-pie-color: forestgreen;
+}
+
+.default-color2.chart-pie {
+    -fx-pie-color: royalblue;
+}
+
+.default-color3.chart-pie {
+    -fx-pie-color: firebrick;
+}

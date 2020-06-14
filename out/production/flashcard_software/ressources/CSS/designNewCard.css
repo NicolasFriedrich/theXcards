@@ -1,0 +1,5 @@
+#rightPane #buttonSave { -fx-background-color: darkgreen; }
+#rightPane #buttonSave:hover { -fx-background-color: green; }
+#rightPane #buttonSave:pressed { -fx-background-color: forestgreen; }
+
+.text-area *.text { -fx-text-alignment: center; }

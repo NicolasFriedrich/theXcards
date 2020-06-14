@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPaneMain" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@designMain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainFXML.ControllerMain">
+    <HBox prefHeight="800.0" prefWidth="1280.0" />
+    <VBox id="leftPane" fx:id="leftPane" prefHeight="800.0" prefWidth="250.0">
+        <children>
+            <Pane prefHeight="150.0" prefWidth="250.0" />
+            <Button id="buttonLeftPaneHome" fx:id="buttonLeftPaneHome" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="Home" textAlignment="CENTER">
+            </Button>
+            <Button id="buttonLeftPaneMyDecks" fx:id="buttonLeftPaneStudyAll" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToStudyAll" prefHeight="70.0" prefWidth="250.0" stylesheets="@designMain.css" text="Study all" textAlignment="CENTER">
+            </Button>
+            <Button id="buttonLeftPaneNewCard" fx:id="buttonLeftPaneNewCard" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToNewCard" prefHeight="70.0" prefWidth="250.0" text="New card" textAlignment="CENTER">
+            </Button>
+            <PieChart />
+        </children></VBox>
+    <VBox layoutX="250.0" prefHeight="800.0" prefWidth="1030.0" />
+    <AnchorPane id="rightPane" fx:id="rightPane" layoutX="250.0" prefHeight="800.0" prefWidth="1030.0">
+        <children>
+            <HBox id="topBar" fx:id="topBar" prefHeight="50.0" prefWidth="1030.0">
+            <children>
+               <Label id="labelTitle" fx:id="labelTitle" prefHeight="50.0" prefWidth="420.0" text="Home" textAlignment="CENTER">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+            </children></HBox>
+            <VBox fx:id="MainInformations" layoutY="120.0" prefHeight="500.0" prefWidth="1030.0">
+            <padding>
+               <Insets right="50.0" />
+            </padding>
+            <children>
+               <Label id="labelHomeCardsQuantity" fx:id="labelHomeCardsQuantity" prefHeight="30.0" prefWidth="615.0" text="Today" textAlignment="CENTER">
+                  <VBox.margin>
+                     <Insets left="200.0" top="100.0" />
+                  </VBox.margin>
+               </Label>
+               <Label prefHeight="30.0" prefWidth="710.0" text="Next Week" textAlignment="CENTER">
+                  <VBox.margin>
+                     <Insets left="200.0" top="100.0" />
+                  </VBox.margin>
+               </Label>
+            </children>
+            </VBox>
+            <HBox layoutY="680.0" prefHeight="70.0" prefWidth="1030.0" spacing="50.0">
+                <children>
+                    <Button id="buttonSave" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="???">
+                        <HBox.margin>
+                            <Insets left="80.0" right="10.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button id="buttonDiscard" layoutX="401.0" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="???">
+                  <HBox.margin>
+                     <Insets right="10.0" />
+                  </HBox.margin></Button>
+               <Button id="buttonDelete" layoutX="290.0" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="???" />
+                </children>
+            </HBox>
+        </children></AnchorPane>
+</AnchorPane>

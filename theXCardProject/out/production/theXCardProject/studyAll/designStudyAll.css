@@ -1,0 +1,36 @@
+.root {
+	-fx-font-family: Trebuchet MS;
+    -fx-font-size: 20px;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+}
+
+.button { -fx-text-fill: #F5F5F5; }
+
+#leftPane, #leftPane .button { -fx-background-color: #303030; }
+#leftPane .button:hover { -fx-background-color: dimgray }
+
+#rightPane #frontCardContent,
+#rightPane #backCardContent {
+    -fx-background-color: white;
+}
+
+#rightPane #buttonEasy { -fx-background-color: darkgreen; }
+#rightPane #buttonEasy:hover { -fx-background-color: green; }
+#rightPane #buttonEasy:pressed { -fx-background-color: forestgreen; }
+
+#rightPane #buttonGood { -fx-background-color: darkblue; }
+#rightPane #buttonGood:hover { -fx-background-color: mediumblue; }
+#rightPane #buttonGood:pressed { -fx-background-color: royalblue; }
+
+#rightPane #buttonDifficult { -fx-background-color: darkred; }
+#rightPane #buttonDifficult:hover { -fx-background-color: firebrick; }
+#rightPane #buttonDifficult:pressed { -fx-background-color: crimson; }
+
+#rightPane { -fx-background-color: #F5F5F5; }
+
+#topBar { -fx-background-color: darkorange; }
+#topBar #labelBackToHome:hover { -fx-font-weight: bold; }

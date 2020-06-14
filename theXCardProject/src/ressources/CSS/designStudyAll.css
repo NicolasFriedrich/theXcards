@@ -1,0 +1,52 @@
+#rightPane #frontCardContent,
+#rightPane #backCardContent {
+    -fx-background-color: white;
+}
+
+#rightPane #buttonEasy {
+    -fx-background-color: darkgreen;
+}
+
+#rightPane #buttonEasy:hover {
+    -fx-background-color: green;
+}
+
+#rightPane #buttonEasy:pressed {
+    -fx-background-color: forestgreen;
+}
+
+#rightPane #buttonGood {
+    -fx-background-color: darkblue;
+}
+
+#rightPane #buttonGood:hover {
+    -fx-background-color: mediumblue;
+}
+
+#rightPane #buttonGood:pressed {
+    -fx-background-color: royalblue;
+}
+
+#rightPane #buttonDifficult {
+    -fx-background-color: darkred;
+}
+
+#rightPane #buttonDifficult:hover {
+    -fx-background-color: firebrick;
+}
+
+#rightPane #buttonDifficult:pressed {
+    -fx-background-color: crimson;
+}
+
+#rightPane #buttonDeleteThisCard {
+    -fx-background-color: dimgray;
+}
+
+#rightPane #buttonDeleteThisCard:hover {
+    -fx-background-color: #303030;
+}
+
+#rightPane #buttonDeleteThisCard:pressed {
+    -fx-background-color: black;
+}
