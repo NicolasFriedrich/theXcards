@@ -27,7 +27,6 @@ public class ControllerNewCard {
 	private static final char separatorUnixWin = File.separatorChar;
 	private final DBInterface dbi = new DBInterface();
 	private final ArrayList<String> cardSetList = dbi.getCardSets();
-	private final ArrayList<FlashCard> cardList = dbi.getCards(cardSetList.get(0));
 
 	public void initialize() {
 		for (String set : cardSetList) {
@@ -51,10 +50,12 @@ public class ControllerNewCard {
 
 	@FXML
 	public void saveCard() {
-		FlashCard card = new FlashCard();
-		card.setFrontSide(cardQuestionTextArea.getText());
-		card.setBackSide(cardAnswerTextArea.getText());
-		card.setCardSet(chooseDeckComboBox.getItems().toString());
-		dbi.addCardToDB(card);
+		if (chooseDeckComboBox.getValue() != null) {
+			FlashCard card = new FlashCard();
+			card.setFrontSide(cardQuestionTextArea.getText());
+			card.setBackSide(cardAnswerTextArea.getText());
+			card.setCardSet(chooseDeckComboBox.getValue());
+			dbi.addCardToDB(card);
+		}
 	}
 }

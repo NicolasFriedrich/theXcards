@@ -1,0 +1,8 @@
+#leftPane,
+#leftPane .button {
+    -fx-background-color: #303030;
+}
+
+#leftPane .button:hover {
+    -fx-background-color: dimgray
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPaneMyDecks" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../ressources/CSS/root.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studyAll.ControllerStudyAll">
+    <HBox prefHeight="800.0" prefWidth="1280.0" />
+    <VBox id="leftPane" fx:id="leftPane" prefHeight="800.0" prefWidth="250.0" stylesheets="@../ressources/CSS/leftPane.css">
+        <children>
+            <ImageView fitHeight="180.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../mainFXML/logo.png" />
+                </image>
+                <VBox.margin>
+                    <Insets bottom="60.0" left="10.0" top="10.0" />
+                </VBox.margin>
+            </ImageView>
+            <Button id="buttonLeftPaneHome" fx:id="buttonLeftPaneHome" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToHome" prefHeight="70.0" prefWidth="250.0" text="Home" textAlignment="CENTER">
+            </Button>
+            <Button id="buttonLeftPaneStudyAll" fx:id="buttonLeftPaneStudyAll" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="Study all" textAlignment="CENTER">
+            </Button>
+            <Button id="buttonLeftPaneNewCard" fx:id="buttonLeftPaneNewCard" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToNewCard" prefHeight="70.0" prefWidth="250.0" text="New card" textAlignment="CENTER">
+            </Button>
+        </children></VBox>
+    <AnchorPane id="rightPane" fx:id="rightPane" layoutX="250.0" prefHeight="800.0" prefWidth="1030.0" stylesheets="@../ressources/CSS/designStudyAll.css">
+        <children>
+            <HBox id="topBar" fx:id="topBar" prefHeight="50.0" prefWidth="1030.0">
+            <children>
+               <Label id="labelTitle" fx:id="labelTitleMyDecks" prefHeight="50.0" prefWidth="420.0" text="Study all" textAlignment="CENTER">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+            </children></HBox>
+            <HBox layoutY="80.0" prefHeight="50.0" prefWidth="1017.0">
+                <ComboBox id="chooseDeckComboBox" fx:id="chooseDeckComboBox" prefHeight="50.0" prefWidth="500.0" promptText="Choose deck">
+                    <HBox.margin>
+                        <Insets left="260.0" />
+                    </HBox.margin>
+                </ComboBox>
+            </HBox>
+            <HBox layoutY="130.0" prefHeight="500.0" prefWidth="1030.0">
+                <children>
+                    <VBox fx:id="frontSection" alignment="CENTER" prefHeight="400.0" prefWidth="430.0">
+                        <HBox.margin>
+                            <Insets left="60.0" right="50.0" />
+                        </HBox.margin>
+                        <children>
+                            <Label id="labelFront" fx:id="labelFront" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="155.0" text="Front" textAlignment="CENTER">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin></Label>
+                     <Label id="frontCardContent" fx:id="frontCardContent" alignment="CENTER" contentDisplay="CENTER" prefHeight="400.0" prefWidth="430.0" textAlignment="CENTER">
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                     </Label>
+                        </children>
+                    </VBox>
+                    <VBox fx:id="backSection" alignment="CENTER" layoutX="60.0" layoutY="20.0" prefHeight="400.0" prefWidth="430.0">
+                        <children>
+                            <Label id="labelBack" fx:id="labelBack" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="155.0" text="Back" textAlignment="CENTER">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                            </Label>
+                     <Label id="backCardContent" fx:id="backCardContent" alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#setRefreshArrowToGray" onMouseExited="#setRefreshArrowToBlack" onMouseReleased="#revealBackSide" prefHeight="400.0" prefWidth="430.0" textAlignment="CENTER">
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                     </Label>
+                        </children>
+                    </VBox>
+                </children>
+                <padding>
+                    <Insets right="50.0" />
+                </padding>
+            </HBox>
+            <HBox layoutY="680.0" prefHeight="70.0" prefWidth="1030.0" spacing="10.0">
+                <children>
+                    <Button id="buttonEasy" fx:id="buttonEasy" mnemonicParsing="false" onAction="#setCardToEasy" prefHeight="70.0" prefWidth="220.0" text="Easy">
+                        <HBox.margin>
+                            <Insets left="60.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button id="buttonGood" fx:id="buttonGood" layoutX="401.0" layoutY="20.0" mnemonicParsing="false" onAction="#setCardToGood" prefHeight="70.0" prefWidth="220.0" text="Good">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin></Button>
+               <Button id="buttonDifficult" fx:id="buttonDifficult" layoutX="290.0" layoutY="20.0" mnemonicParsing="false" onAction="#setCardToDifficult" prefHeight="70.0" prefWidth="220.0" text="Difficult" />
+               <Button id="buttonDeleteThisCard" fx:id="buttonDeleteThisCard" mnemonicParsing="false" onAction="#deleteThisCard" prefHeight="70.0" prefWidth="220.0" text="Delete this card" />
+                </children>
+            </HBox>
+        </children></AnchorPane>
+</AnchorPane>
