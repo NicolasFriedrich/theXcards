@@ -40,7 +40,7 @@
                </Label>
             </children></HBox>
             <HBox layoutY="80.0" prefHeight="50.0" prefWidth="1017.0">
-                <ComboBox id="chooseDeckComboBox" fx:id="chooseDeckComboBox" prefHeight="50.0" prefWidth="500.0" promptText="Choose deck">
+                <ComboBox id="comboBox" fx:id="comboBox" onAction="#authorizeLearning" prefHeight="50.0" prefWidth="500.0" promptText="Choose deck">
                     <HBox.margin>
                         <Insets left="260.0" />
                     </HBox.margin>
@@ -71,7 +71,7 @@
                                     <Insets bottom="10.0" />
                                 </VBox.margin>
                             </Label>
-                     <Label id="backCardContent" fx:id="backCardContent" alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#setRefreshArrowToGray" onMouseExited="#setRefreshArrowToBlack" onMouseReleased="#revealBackSide" prefHeight="400.0" prefWidth="430.0" textAlignment="CENTER">
+                     <Label id="backCardContent" fx:id="backCardContent" alignment="CENTER" contentDisplay="CENTER" onMouseEntered="#setRefreshArrowToBlack" onMouseExited="#setRefreshArrowToGray" onMouseReleased="#revealBackSide" prefHeight="400.0" prefWidth="430.0" textAlignment="CENTER">
                         <padding>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </padding>

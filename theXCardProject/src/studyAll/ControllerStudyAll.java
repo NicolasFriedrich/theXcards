@@ -1,5 +1,8 @@
 package studyAll;
 
+import database.DBInterface;
+import database.Status;
+import flashcard.FlashCard;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
@@ -8,9 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import database.DBInterface;
-import flashcard.FlashCard;
-import database.Status;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class ControllerStudyAll {
 	@FXML
 	public VBox backSection;
 	@FXML
-	private ComboBox<String> chooseDeckComboBox;
+	private ComboBox<String> comboBox;
 
 	private final Image refreshArrowBlack = new Image(getClass().getResourceAsStream("refresh_arrow_black.png"));
 	private final Image refreshArrowGray = new Image(getClass().getResourceAsStream("refresh_arrow_gray.png"));
@@ -37,11 +37,10 @@ public class ControllerStudyAll {
 	static ArrayList<String> cardSetList = dbi.getCardSets();
 	static ArrayList<FlashCard> cardList = new ArrayList<>();
 	private static int arrayIndex;
-	private static boolean isActive = false;
 
 	public void initialize() {
 		for (String set : cardSetList) {
-			chooseDeckComboBox.getItems().add(set);
+			comboBox.getItems().add(set);
 		}
 		frontCardContent.setText("Please choose a deck.");
 		backCardContent.setText("There is no card to study.");
@@ -62,9 +61,22 @@ public class ControllerStudyAll {
 	}
 
 	@FXML
+	private void authorizeLearning() {
+		backCardContent.setText("");
+		setRefreshArrowToGray();
+		cardList = dbi.getCards(comboBox.getValue());
+		arrayIndex = 0;
+		frontCardContent.setText(cardList.get(arrayIndex).getFrontSide());
+	}
+
+	private boolean checkComboBoxStudyAll() {
+		return comboBox.getValue() != null;
+	}
+
+	@FXML
 	private void revealBackSide() {
-		if (!cardList.isEmpty() && (cardList.get(arrayIndex) != null)) {
-			isActive = false;
+		if (checkComboBoxStudyAll()) {
+//			setRefreshArrow(null);
 			backCardContent.setGraphic(null);
 			backCardContent.setText(cardList.get(arrayIndex).getBackSide());
 		}
@@ -72,23 +84,31 @@ public class ControllerStudyAll {
 
 	@FXML
 	private void setCardToEasy() {
-		dbi.updateCardInDB(cardList.get(arrayIndex), Status.EAS.toString().toLowerCase());
-		backCardContent.setText("");
-		increaseArrayIndex();
-		setFrontWithCardContent(arrayIndex);
+		if (checkComboBoxStudyAll()) {
+			setCardSatus(Status.EAS);
+		}
 	}
 
 	@FXML
 	private void setCardToGood() {
-		dbi.updateCardInDB(cardList.get(arrayIndex), Status.GOO.toString().toLowerCase());
-		backCardContent.setText("");
-		increaseArrayIndex();
-		setFrontWithCardContent(arrayIndex);
+		if (checkComboBoxStudyAll()) {
+			setCardSatus(Status.GOO);
+		}
 	}
 
 	@FXML
 	private void setCardToDifficult() {
-		dbi.updateCardInDB(cardList.get(arrayIndex), Status.DIF.toString().toLowerCase());
+		if (checkComboBoxStudyAll()) {
+			setCardSatus(Status.DIF);
+		}
+	}
+
+	private void setFrontWithCardContent(int arrayIndex) {
+		frontCardContent.setText(cardList.get(arrayIndex).getFrontSide());
+	}
+
+	private void setCardSatus(Status satus) {
+		dbi.updateCardInDB(cardList.get(arrayIndex), satus.toString().toLowerCase());
 		backCardContent.setText("");
 		increaseArrayIndex();
 		setFrontWithCardContent(arrayIndex);
@@ -96,29 +116,31 @@ public class ControllerStudyAll {
 
 	@FXML
 	private void deleteThisCard() {
-		increaseArrayIndex();
-		setFrontWithCardContent(arrayIndex);
-		backCardContent.setText("");
-		dbi.deleteCardFromDB(cardList.get(arrayIndex));
+		if (checkComboBoxStudyAll()) {
+			increaseArrayIndex();
+			setFrontWithCardContent(arrayIndex);
+			backCardContent.setText("");
+			dbi.deleteCardFromDB(cardList.get(arrayIndex));
+		}
 	}
 
 	@FXML
 	private void setRefreshArrowToGray() {
-		if (isActive) {
-			backCardContent.setGraphic(new ImageView(refreshArrowBlack));
-		}
-		else {
-			backCardContent.setGraphic(null);
+		if(backCardContent.getText().equals("")) {
+			setRefreshArrow(refreshArrowGray);
 		}
 	}
 
 	@FXML
 	private void setRefreshArrowToBlack() {
-		if (isActive) {
-			backCardContent.setGraphic(new ImageView(refreshArrowGray));
+		if(backCardContent.getText().equals("")) {
+			setRefreshArrow(refreshArrowBlack);
 		}
-		else {
-			backCardContent.setGraphic(null);
+	}
+
+	private void setRefreshArrow(Image arrowColor) {
+		if (comboBox.getValue() != null) {
+			backCardContent.setGraphic(new ImageView(arrowColor));
 		}
 	}
 
@@ -127,12 +149,7 @@ public class ControllerStudyAll {
 			arrayIndex = 0;
 		} else {
 			arrayIndex++;
-			isActive = true;
 			backCardContent.setGraphic(new ImageView(refreshArrowGray));
 		}
-	}
-
-	private void setFrontWithCardContent(int arrayIndex) {
-		frontCardContent.setText(cardList.get(arrayIndex).getFrontSide());
 	}
 }

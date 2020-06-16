@@ -41,7 +41,7 @@
                </Label>
             </children></HBox>
             <HBox layoutY="80.0" prefHeight="50.0" prefWidth="1017.0">
-                <ComboBox id="chooseDeckComboBox" fx:id="chooseDeckComboBox" prefHeight="50.0" prefWidth="500.0" promptText="Choose deck">
+                <ComboBox id="comboBox" fx:id="comboBox" prefHeight="50.0" prefWidth="500.0" promptText="Choose deck">
                     <HBox.margin>
                         <Insets left="260.0" />
                     </HBox.margin>

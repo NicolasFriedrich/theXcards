@@ -15,47 +15,53 @@ import java.util.ArrayList;
 public class ControllerNewCard {
 
 	@FXML
-	public AnchorPane anchorPaneNewCard;
+	private AnchorPane anchorPaneNewCard;
 	@FXML
-	public TextArea cardQuestionTextArea;
+	private TextArea cardQuestionTextArea;
 	@FXML
-	public TextArea cardAnswerTextArea;
+	private TextArea cardAnswerTextArea;
 	@FXML
 	public Label labelStatusCheck;
 	@FXML
-	public ComboBox<String> chooseDeckComboBox;
+	public ComboBox<String> comboBox;
 	private static final char separatorUnixWin = File.separatorChar;
 	private final DBInterface dbi = new DBInterface();
 	private final ArrayList<String> cardSetList = dbi.getCardSets();
 
 	public void initialize() {
 		for (String set : cardSetList) {
-			chooseDeckComboBox.getItems().add(set);
+			comboBox.getItems().add(set);
 		}
 	}
 
 	@FXML
-	public void goToHome() throws IOException {
+	private void goToHome() throws IOException {
 		String pathToHome = ".."+separatorUnixWin+"mainFXML"+separatorUnixWin+"viewMain.fxml";
 		AnchorPane anchorPaneHome = FXMLLoader.load(getClass().getResource(pathToHome));
 		anchorPaneNewCard.getChildren().setAll(anchorPaneHome);
 	}
 
 	@FXML
-	public void goToStudyAll() throws IOException {
+	private void goToStudyAll() throws IOException {
 		String pathToStudyAll = ".."+separatorUnixWin+"studyAll"+separatorUnixWin+"viewStudyAll.fxml";
 		AnchorPane anchorPaneMyDecks = FXMLLoader.load(getClass().getResource(pathToStudyAll));
 		anchorPaneNewCard.getChildren().setAll(anchorPaneMyDecks);
 	}
 
 	@FXML
-	public void saveCard() {
-		if (chooseDeckComboBox.getValue() != null) {
+	private void saveCard() {
+		if (checkComboBoxNewCard()) {
 			FlashCard card = new FlashCard();
 			card.setFrontSide(cardQuestionTextArea.getText());
 			card.setBackSide(cardAnswerTextArea.getText());
-			card.setCardSet(chooseDeckComboBox.getValue());
+			card.setCardSet(comboBox.getValue());
 			dbi.addCardToDB(card);
+			cardQuestionTextArea.setText("");
+			cardAnswerTextArea.setText("");
 		}
+	}
+
+	private boolean checkComboBoxNewCard() {
+		return comboBox.getValue() != null;
 	}
 }
