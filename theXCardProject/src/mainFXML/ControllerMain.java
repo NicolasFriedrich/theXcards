@@ -23,7 +23,7 @@ public class ControllerMain {
 	@FXML
 	public VBox MainInformations;
 	@FXML
-	public AnchorPane anchorPaneMain;
+	private AnchorPane anchorPaneMain;
 	@FXML
 	public Label labelHomeCardsQuantity;
 	private static final char separatorUnixWin = File.separatorChar;
@@ -35,7 +35,6 @@ public class ControllerMain {
 	private final ArrayList<FlashCard> cardList = dbi.getCards(cardSetList.get(0));
 
 	public void initialize() {
-		System.out.println("cardSetList.size  = " + cardSetList.size()	);
 		assert cardList != null;
 		List<FlashCard> statusNEW = cardList.stream()
 				.filter(card -> card.getStatus().equals(Status.NEW.toString().toLowerCase()))
@@ -62,17 +61,16 @@ public class ControllerMain {
 	}
 
 	@FXML
-	public void goToStudyAll() throws IOException {
+	private void goToStudyAll() throws IOException {
 		String pathToStudyAll = ".."+separatorUnixWin+"studyAll"+separatorUnixWin+"viewStudyAll.fxml";
 		AnchorPane anchorPaneMyDecks = FXMLLoader.load(getClass().getResource(pathToStudyAll));
 		anchorPaneMain.getChildren().setAll(anchorPaneMyDecks);
 	}
 
 	@FXML
-	public void goToNewCard() throws IOException {
+	private void goToNewCard() throws IOException {
 		String pathToNewCard = ".."+separatorUnixWin+"newCard"+separatorUnixWin+"viewNewCard.fxml";
 		AnchorPane anchorPaneNewCard = FXMLLoader.load(getClass().getResource(pathToNewCard));
 		anchorPaneMain.getChildren().setAll(anchorPaneNewCard);
 	}
-
 }
