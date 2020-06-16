@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ControllerStudyAll {
 
@@ -65,6 +66,7 @@ public class ControllerStudyAll {
 		backCardContent.setText("");
 		setRefreshArrowToGray();
 		cardList = dbi.getCards(comboBox.getValue());
+		Collections.shuffle(cardList);
 		arrayIndex = 0;
 		frontCardContent.setText(cardList.get(arrayIndex).getFrontSide());
 	}
@@ -76,7 +78,6 @@ public class ControllerStudyAll {
 	@FXML
 	private void revealBackSide() {
 		if (checkComboBoxStudyAll()) {
-//			setRefreshArrow(null);
 			backCardContent.setGraphic(null);
 			backCardContent.setText(cardList.get(arrayIndex).getBackSide());
 		}
