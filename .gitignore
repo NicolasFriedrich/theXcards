@@ -23,4 +23,5 @@
 hs_err_pid*
 
 # database
-cards.db
+out/production/theXcards/database/cards.db
+src/database/cards.db

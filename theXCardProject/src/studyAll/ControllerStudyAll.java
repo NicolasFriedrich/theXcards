@@ -11,10 +11,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ControllerStudyAll {
 
@@ -61,12 +64,42 @@ public class ControllerStudyAll {
 		anchorPaneMyDecks.getChildren().setAll(anchorPaneNewCard);
 	}
 
+	private void setCardList() {
+		ArrayList<FlashCard> cardsWithStatusNEW = new ArrayList<>();
+		ArrayList<FlashCard> cardsWithStatusDIF = new ArrayList<>();
+		ArrayList<FlashCard> cardsWithStatusGOO = new ArrayList<>();
+		ArrayList<FlashCard> cardsWithStatusEAS = new ArrayList<>();
+		ArrayList<FlashCard> allCards = dbi.getCards(comboBox.getValue());
+		for (FlashCard card : allCards) {
+			switch (card.getStatus()) {
+				case "new":
+					cardsWithStatusNEW.add(card);
+					break;
+				case "dif":
+					cardsWithStatusDIF.add(card);
+					break;
+				case "goo":
+					cardsWithStatusGOO.add(card);
+					break;
+				default:
+					cardsWithStatusEAS.add(card);
+					break;
+			}
+		}
+		cardList = (ArrayList<FlashCard>) Stream.of(
+				cardsWithStatusNEW,
+				cardsWithStatusDIF,
+				cardsWithStatusGOO,
+				cardsWithStatusEAS)
+				.flatMap(Collection::stream)
+				.collect(Collectors.toList());
+	}
+
 	@FXML
 	private void authorizeLearning() {
 		backCardContent.setText("");
 		setRefreshArrowToGray();
-		cardList = dbi.getCards(comboBox.getValue());
-		Collections.shuffle(cardList);
+		setCardList();
 		arrayIndex = 0;
 		frontCardContent.setText(cardList.get(arrayIndex).getFrontSide());
 	}
